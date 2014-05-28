@@ -7,5 +7,5 @@
  * @method YASQE.determineId
  */
 var root = module.exports = function(element) {
-	return require("jquery")((cm.getWrapperElement()).closest('[id]').attr('id'));
+	return require("jquery")(element).closest('[id]').attr('id');
 };

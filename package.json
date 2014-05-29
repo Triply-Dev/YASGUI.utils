@@ -1,6 +1,6 @@
 {
   "name": "yasgui-utils",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Utils for YASGUI libs",
   "main": "src/main.js",
   "repository": {
@@ -14,7 +14,7 @@
     }
   ],
   "author": "Laurens Rietveld",
-   "maintainers": [
+  "maintainers": [
     {
       "name": "Laurens Rietveld",
       "email": "laurens.rietveld@gmail.com",

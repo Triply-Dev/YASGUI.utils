@@ -24,7 +24,9 @@ var root = module.exports = {
 			var dom = parser.parseFromString(svgString, "text/xml");
 			var svg = dom.documentElement;
 			var svgContainer = $("<div></div>").css("display", "inline-block");
-			if (config.width && config.height) svgContainer.width(config.width).height(config.height);
+			if (!config.width) config.width = "100%";
+			if (!config.height) config.height = "100%";
+			svgContainer.width(config.width).height(config.height);
 			return svgContainer.append(svg);
 		}
 		return false;

@@ -24,7 +24,6 @@
   "bugs": {
     "url": "https://github.com/YASGUI/Utils/issues"
   },
-  "readme": "README.md",
   "homepage": "https://github.com/YASGUI/Utils",
   "dependencies": {
     "jquery": "~ 1.11.0",

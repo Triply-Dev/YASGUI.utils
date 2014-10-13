@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/YASGUI/Utils",
   "dependencies": {
-    "jquery": "~ 1.11.0",
     "store": "^1.3.14"
   }
 }

@@ -16,6 +16,8 @@ var root = module.exports = {
 		if (typeof exp == "string") {
 			exp = times[exp]();
 		}
+		//try to store string for dom objects (e.g. XML result). Otherwise, we might get a circular reference error when stringifying this
+		if (val.documentElement) val = new XMLSerializer().serializeToString(val.documentElement);
 		store.set(key, {
 			val : val,
 			exp : exp,

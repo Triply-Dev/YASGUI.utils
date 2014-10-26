@@ -1,9 +1,14 @@
 module.exports = {
 	draw: function(parent, svgString, config) {
 		if (!parent) return;
-		var el = root.getElement(svgString, config);
+		var el = module.exports.getElement(svgString, config);
 		if (el) {
-			$(parent).append(el);
+			if (parent.append) {
+				parent.append(el);
+			} else {
+				//regular dom doc
+				parent.appendChild(el);
+			}
 		}
 	},
 	getElement: function(svgString, config) {

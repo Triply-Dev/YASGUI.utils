@@ -12,6 +12,7 @@ module.exports = {
 		}
 	},
 	getElement: function(svgString, config) {
+		if (!config) config = {};
 		if (svgString && svgString.indexOf("<svg") == 0) {
 			if (!config.width) config.width = "100%";
 			if (!config.height) config.height = "100%";

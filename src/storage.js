@@ -13,16 +13,21 @@ var times = {
 
 var root = module.exports = {
 	set : function(key, val, exp) {
-		if (typeof exp == "string") {
-			exp = times[exp]();
+		if (val) {
+			if (typeof exp == "string") {
+				exp = times[exp]();
+			}
+			//try to store string for dom objects (e.g. XML result). Otherwise, we might get a circular reference error when stringifying this
+			if (val.documentElement) val = new XMLSerializer().serializeToString(val.documentElement);
+			store.set(key, {
+				val : val,
+				exp : exp,
+				time : new Date().getTime()
+			});
 		}
-		//try to store string for dom objects (e.g. XML result). Otherwise, we might get a circular reference error when stringifying this
-		if (val.documentElement) val = new XMLSerializer().serializeToString(val.documentElement);
-		store.set(key, {
-			val : val,
-			exp : exp,
-			time : new Date().getTime()
-		});
+	},
+	remove: function(key) {
+		store.remove(key)
 	},
 	get : function(key) {
 		var info = store.get(key);

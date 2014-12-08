@@ -1,7 +1,7 @@
 module.exports = {
-	draw: function(parent, svgString, config) {
+	draw: function(parent, svgString) {
 		if (!parent) return;
-		var el = module.exports.getElement(svgString, config);
+		var el = module.exports.getElement(svgString);
 		if (el) {
 			if (parent.append) {
 				parent.append(el);
@@ -11,20 +11,15 @@ module.exports = {
 			}
 		}
 	},
-	getElement: function(svgString, config) {
-		if (!config) config = {};
+	getElement: function(svgString) {
 		if (svgString && svgString.indexOf("<svg") == 0) {
-			if (!config.width) config.width = "100%";
-			if (!config.height) config.height = "100%";
-			
+			//no style passed via config. guess own styles
 			var parser = new DOMParser();
 			var dom = parser.parseFromString(svgString, "text/xml");
 			var svg = dom.documentElement;
 			
 			var svgContainer = document.createElement("div");
-			svgContainer.style.display = "inline-block";
-			svgContainer.style.width = config.width;
-			svgContainer.style.height = config.height;
+			svgContainer.className = 'svgImg';
 			svgContainer.appendChild(svg);
 			return svgContainer;
 		}

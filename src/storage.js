@@ -13,7 +13,8 @@ var times = {
 
 var root = module.exports = {
 	set : function(key, val, exp) {
-		if (val) {
+    if (!store.enabled) return;//this is probably in private mode. Don't run, as we might get Js errors
+		if (key && val) {
 			if (typeof exp == "string") {
 				exp = times[exp]();
 			}
@@ -27,17 +28,23 @@ var root = module.exports = {
 		}
 	},
 	remove: function(key) {
-		store.remove(key)
+    if (!store.enabled) return;//this is probably in private mode. Don't run, as we might get Js errors
+		if (key) store.remove(key)
 	},
 	get : function(key) {
-		var info = store.get(key);
-		if (!info) {
+    if (!store.enabled) return null;//this is probably in private mode. Don't run, as we might get Js errors
+		if (key) {
+			var info = store.get(key);
+			if (!info) {
+				return null;
+			}
+			if (info.exp && new Date().getTime() - info.time > info.exp) {
+				return null;
+			}
+			return info.val;
+		} else {
 			return null;
 		}
-		if (info.exp && new Date().getTime() - info.time > info.exp) {
-			return null;
-		}
-		return info.val;
 	}
 
 };

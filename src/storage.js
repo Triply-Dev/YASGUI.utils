@@ -14,7 +14,7 @@ var times = {
 var root = module.exports = {
 	set : function(key, val, exp) {
     if (!store.enabled) return;//this is probably in private mode. Don't run, as we might get Js errors
-		if (key && val) {
+		if (key && val !== undefined) {
 			if (typeof exp == "string") {
 				exp = times[exp]();
 			}

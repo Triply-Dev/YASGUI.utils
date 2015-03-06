@@ -28,8 +28,16 @@ var root = module.exports = {
 		}
 	},
 	remove: function(key) {
-    if (!store.enabled) return;//this is probably in private mode. Don't run, as we might get Js errors
+		if (!store.enabled) return;//this is probably in private mode. Don't run, as we might get Js errors
 		if (key) store.remove(key)
+	},
+	removeAll: function(filter) {
+		if (!store.enabled) return;//this is probably in private mode. Don't run, as we might get Js errors
+		if (typeof filter === 'function') {
+			for (var key in store.getAll()) {
+				if (filter(key, root.get(key))) root.remove(key);
+			}
+		}
 	},
 	get : function(key) {
     if (!store.enabled) return null;//this is probably in private mode. Don't run, as we might get Js errors

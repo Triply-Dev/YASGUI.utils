@@ -30,6 +30,7 @@ function isQuotaExceeded(e) {
       quotaExceeded = true;
     }
   }
+  return quotaExceeded;
 }
 var root = (module.exports = {
   set: function(key, val, exp, onQuotaExceeded) {

@@ -34,7 +34,6 @@ function isQuotaExceeded(e) {
 var root = (module.exports = {
   set: function(key, val, exp, onQuotaExceeded) {
     if (!store.enabled) return; //this is probably in private mode. Don't run, as we might get Js errors
-    console.log(store);
     if (key && val !== undefined) {
       if (typeof exp == "string") {
         exp = times[exp]();

@@ -10,7 +10,27 @@ var times = {
     times.month() * 12;
   }
 };
-
+function isQuotaExceeded(e) {
+  var quotaExceeded = false;
+  if (e) {
+    if (e.code) {
+      switch (e.code) {
+        case 22:
+          quotaExceeded = true;
+          break;
+        case 1014:
+          // Firefox
+          if (e.name === "NS_ERROR_DOM_QUOTA_REACHED") {
+            quotaExceeded = true;
+          }
+          break;
+      }
+    } else if (e.number === -2147024882) {
+      // Internet Explorer 8
+      quotaExceeded = true;
+    }
+  }
+}
 var root = (module.exports = {
   set: function(key, val, exp) {
     if (!store.enabled) return; //this is probably in private mode. Don't run, as we might get Js errors
@@ -21,11 +41,16 @@ var root = (module.exports = {
       }
       //try to store string for dom objects (e.g. XML result). Otherwise, we might get a circular reference error when stringifying this
       if (val.documentElement) val = new XMLSerializer().serializeToString(val.documentElement);
-      store.set(key, {
-        val: val,
-        exp: exp,
-        time: new Date().getTime()
-      });
+      try {
+        store.set(key, {
+          val: val,
+          exp: exp,
+          time: new Date().getTime()
+        });
+      } catch (e) {
+        e.quotaExceeded = isQuotaExceeded(e);
+        throw e;
+      }
     }
   },
   remove: function(key) {

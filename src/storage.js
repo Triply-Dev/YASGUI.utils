@@ -66,9 +66,9 @@ var root = (module.exports = {
     if (!filter) {
       store.clearAll();
     } else if (typeof filter === "function") {
-      for (var key in store.getAll()) {
-        if (filter(key, root.get(key))) root.remove(key);
-      }
+      store.each(function(value, key) {
+        if (filter(key, value)) root.remove(key);
+      });
     }
   },
   get: function(key) {

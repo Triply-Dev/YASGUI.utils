@@ -16,7 +16,7 @@ export default class Storage {
     key: string,
     val: any,
     expInSeconds: number,
-    onQuotaExceeded: (e: any) => {}
+    onQuotaExceeded: (e: any) => void
   ) {
     if (!store.enabled) return; //this is probably in private mode. Don't run, as we might get Js errors
     this.removeExpiredKeys();

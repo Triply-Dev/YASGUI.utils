@@ -2,7 +2,7 @@
   "name": "yasgui-utils",
   "version": "2.0.0",
   "description": "Utils for YASGUI libs",
-  "main": "build/src/main.js",
+  "main": "build/index.js",
   "license": "MIT",
   "author": "Laurens Rietveld",
   "homepage": "https://github.com/OpenTriply/YASGUI.Utils",

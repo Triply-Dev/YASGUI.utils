@@ -63,6 +63,11 @@ export default class Storage {
       });
     }
   }
+  removeAllByNamespace(namespace:string) {
+    store.each((value: ItemWrapper<any>, key: string) => {
+      if (value.namespace && value.namespace === namespace) this.remove(key);
+    });
+  }
   get<V>(key: string):V {
     if (!store.enabled) return null; //this is probably in private mode. Don't run, as we might get Js errors
     this.removeExpiredKeys();

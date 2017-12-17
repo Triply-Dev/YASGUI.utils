@@ -2,30 +2,33 @@
   "name": "yasgui-utils",
   "version": "1.6.7",
   "description": "Utils for YASGUI libs",
-  "main": "src/main.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/YASGUI/Utils.git"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://yasgui.github.io/license.txt"
-    }
-  ],
+  "main": "build/src/main.js",
+  "license": "MIT",
   "author": "Laurens Rietveld",
+  "homepage": "https://github.com/OpenTriply/YASGUI.Utils",
   "maintainers": [
     {
       "name": "Laurens Rietveld",
-      "email": "laurens.rietveld@gmail.com",
-      "web": "http://laurensrietveld.nl"
+      "email": "laurens.rietveld@triply.cc",
+      "web": "https://triply.cc"
     }
   ],
-  "bugs": {
-    "url": "https://github.com/YASGUI/Utils/issues"
+  "bugs": "https://github.com/OpenTriply/Yasgui.Utils/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenTriply/YASGUI.Utils.git"
   },
-  "homepage": "https://github.com/YASGUI/Utils",
+  "scripts": {
+    "upgrade-interactive": "npm-check --skip-unused -u",
+    "prettify": "prettier --parser typescript --write $(find ./src -regex '.*\\.tsx?$')"
+  },
   "dependencies": {
-    "store": "^2.0.4"
+    "@types/node": "^8.5.1",
+    "store": "^2.0.12"
+  },
+  "devDependencies": {
+    "npm-check": "^5.5.2",
+    "prettier": "^1.9.2",
+    "typescript": "^2.6.2"
   }
 }

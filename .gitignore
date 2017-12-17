@@ -1,5 +1,2 @@
-.classpath
-dist
-node_modules
-.project
-.settings
+/node_modules
+/build

@@ -76,9 +76,6 @@ export default class Storage {
       if (!info) {
         return null;
       }
-      if (info.exp && new Date().getTime() - info.time > info.exp) {
-        return null;
-      }
       return info.val;
     } else {
       return null;
